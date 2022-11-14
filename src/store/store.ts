@@ -1,7 +1,8 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import fourChanReducer from './reducers/4chanSlice'
 
 const rootReducer = combineReducers({
-
+  fourChanReducer
 })
 
 export const setupStore = () => {
