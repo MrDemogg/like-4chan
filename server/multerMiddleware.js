@@ -18,7 +18,7 @@ const fileName = (req, file, callback) => {
   if (types.includes(req.mimeType)) {
     callback(null, true)
   } else {
-    callback(null, false)
+    callback('Выбранный файл не фото!', false)
   }
 }
 
