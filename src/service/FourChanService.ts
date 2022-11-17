@@ -1,8 +1,8 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query";
-import {IPost} from "../hooks/IPost";
+import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react'
+import {IPost} from "../models/IPost";
 
-export const chatAPI = createApi({
-  reducerPath: 'chatAPI',
+export const fourChanAPI = createApi({
+  reducerPath: 'fourChanAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000' }),
   tagTypes: ['Post'],
   endpoints: (build) => ({
@@ -10,7 +10,8 @@ export const chatAPI = createApi({
       query: (message) => ({
         url: '/upload',
         method: 'POST',
-        body: message
+        body: message,
+        responseHandler: response => response.text()
       }),
       invalidatesTags: ['Post']
     })
