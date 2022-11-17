@@ -1,13 +1,18 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import fourChanReducer from './reducers/4chanSlice'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import fourChanReducer from './reducers/FourChanSlice'
+import {fourChanAPI} from "../service/FourChanService";
 
 const rootReducer = combineReducers({
-  fourChanReducer
+  fourChanReducer,
+  [fourChanAPI.reducerPath]: fourChanAPI.reducer
 })
 
-export const setupStore = () => {
+export const setupStore = (): any => {
   return configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware()
+        .concat(fourChanAPI.middleware)
   })
 }
 
