@@ -4,5 +4,5 @@ const rootPath = __dirname;
 
 module.exports = {
   rootPath,
-  uploadPath: path.join(rootPath, 'upload')
+  uploadPath: path.join(rootPath, 'uploads/images')
 };
