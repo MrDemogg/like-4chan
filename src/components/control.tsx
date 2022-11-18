@@ -3,7 +3,7 @@ import {fourChanAPI} from "../service/FourChanService";
 import {Button, Form} from "react-bootstrap";
 import {FileUploader} from "react-drag-drop-files";
 
-const fileTypes = ['JPG', 'PNG', 'JPEG']
+const fileTypes = ['JPG', 'PNG', 'JPEG', 'JFIF']
 
 const Control = () => {
   const [post] = fourChanAPI.usePostMessageMutation()
@@ -17,8 +17,12 @@ const Control = () => {
     event.preventDefault();
 
     const formData = new FormData();
-    formData.append('auhtor', author)
-    formData.append('message', message)
+    if (author.length !== 0) {
+      formData.append('author', author)
+    }
+    if (message.length !== 0) {
+      formData.append('message', message)
+    }
     if (file) {
       formData.append('image', file)
     }
