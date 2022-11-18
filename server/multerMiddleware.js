@@ -1,25 +1,15 @@
-const multer = require('multer')
-const {v4: uuidv4} = require('uuid')
+const multer  = require('multer');
+const path = require('path');
+const config = require('./config');
+const {v4} = require('uuid')
 
 const storage = multer.diskStorage({
-  destination(req, file, callback) {
-    callback(null, 'messages/')
+  destination: function (req, file, cb) {
+    cb(null, config.uploadPath);
   },
-  filename(req, file, callback) {
-    const date = new Date()
-    const datetime = `${date.toLocaleDateString()}T${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`
-    callback(null, `${uuidv4()}${datetime}`)
+  filename: function (req, file, cb) {
+    cb(null, v4() + path.extname(file.originalname));
   }
-})
+});
 
-const types = ['image/png', 'image/jpeg', 'image/jpg']
-
-const fileName = (req, file, callback) => {
-  if (types.includes(req.mimeType)) {
-    callback(null, true)
-  } else {
-    callback('Выбранный файл - не фото!', false)
-  }
-}
-
-module.exports = multer({storage, fileName})
+module.exports = multer({storage})
