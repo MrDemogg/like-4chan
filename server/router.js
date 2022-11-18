@@ -1,15 +1,14 @@
 const { Router } = require('express')
-const middleware = require('./multerMiddleware')
+const upload = require('./multerMiddleware')
 const router = Router()
 
-router.post('/upload', middleware.single('image'),(req, res) => {
-  try {
-    if (req.file) {
-      res.json(req.file)
-    }
-  } catch (e) {
-    res.send(e.message)
+router.post('/upload', upload.single('image'), (req, res) => {
+  const product = req.body;
+  console.log(product)
+  if (req.file) {
+    console.log(req.file)
   }
-})
+});
+
 
 module.exports = router
