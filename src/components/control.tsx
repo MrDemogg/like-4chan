@@ -6,7 +6,7 @@ import {FileUploader} from "react-drag-drop-files";
 const fileTypes = ['JPG', 'PNG', 'JPEG', 'JFIF']
 
 const Control = () => {
-  const [post] = fourChanAPI.usePostMessageMutation()
+  const [post] = fourChanAPI.usePostRequestMutation()
   const [author, setAuthor] = useState('')
   const [message, setMessage] = useState('')
   const [file, setFile] = useState<File>()
