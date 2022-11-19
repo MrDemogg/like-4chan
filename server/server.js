@@ -7,6 +7,7 @@ const port = 8000
 
 app.use(cors())
 app.use(express.json({ extended: true }))
+app.use('/uploads/images', express.static('server/uploads/images'))
 app.use('', router)
 
 app.listen(port, () => {
