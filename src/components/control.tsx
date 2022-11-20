@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {fourChanAPI} from "../service/FourChanService";
-import {Button, Form} from "react-bootstrap";
+import {Button, Form, Card} from "react-bootstrap";
 import {FileUploader} from "react-drag-drop-files";
 
 const fileTypes = ['JPG', 'PNG', 'JPEG', 'JFIF']
@@ -30,18 +30,32 @@ const Control = () => {
     post(formData)
   }
   return (
-    <div>
-      <Form.Control
-        value={author}
-        onChange={(e) => setAuthor(e.currentTarget.value)}
-      />
-      <Form.Control
-        value={message}
-        onChange={(e) => setMessage(e.currentTarget.value)}
-      />
-      <FileUploader handleChange={handleChange} name="file" types={fileTypes} />
-      <Button onClick={postHandler}>Post</Button>
-    </div>
+    <Card.Header style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
+      <div style={{width: '40%'}}>
+        <Form.Control
+          value={author}
+          placeholder={'Автор'}
+          onChange={(e) => setAuthor(e.currentTarget.value)}
+        />
+        <Form.Control
+          value={message}
+          placeholder={'Сообщение'}
+          style={{marginTop: 10}}
+          onChange={(e) => setMessage(e.currentTarget.value)}
+        />
+      </div>
+      <div style={{width: '40%'}}>
+        <FileUploader
+          handleChange={handleChange}
+          name="file"
+          types={fileTypes}
+        />
+        <Button
+          style={{marginTop: 10, width: '100%'}}
+          onClick={postHandler}
+        >Post</Button>
+      </div>
+    </Card.Header>
   );
 };
 
