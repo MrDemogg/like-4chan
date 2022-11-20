@@ -6,8 +6,8 @@ import {Card} from "react-bootstrap";
 const App = () => {
   return (
     <Card>
-      <Messages />
       <Control />
+      <Messages />
     </Card>
   );
 };
